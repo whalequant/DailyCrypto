@@ -1,0 +1,22 @@
+name: TEST
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.0.0
+
+      - name: setup
+        id: setup
+        run: |
+          python3 -m pip install -r requirements.txt
+
+      - name: test-data
+        id: test-data
+        run: |
+          python3 -m unittest test/data.py
