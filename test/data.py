@@ -16,8 +16,8 @@ class TestData(unittest.TestCase):
 
             # Test date continuity
             # All date intervals should be same
-            file = open(data_file_path, 'r')
-            records = file.readlines()
+            with open(data_file_path, 'r') as file:
+                records = file.readlines()
             first_date = datetime.datetime.fromisoformat(records[1].split(',')[0]) # Skip the head record
             acc_date = first_date
             for record in records[1:]:
