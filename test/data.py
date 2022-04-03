@@ -14,17 +14,23 @@ class TestData(unittest.TestCase):
             data_name = os.path.splitext(os.path.basename(data_file_path))[0]
             _, _, candle_unit = self.parse_data_name(data_name)
 
+            # Test new line character integrity
+            with open(data_file_path, 'rb') as file:
+                records = file.readlines()
+                for record in records:
+                    self.assertEqual(b'\r\n', record[-2:])
+
             # Test date continuity
             # All date intervals should be same
             with open(data_file_path, 'r') as file:
                 records = file.readlines()
-            first_date = datetime.datetime.fromisoformat(records[1].split(',')[0]) # Skip the head record
-            acc_date = first_date
-            for record in records[1:]:
-                cur_date = datetime.datetime.fromisoformat(record.split(',')[0])
-                self.assertEqual(acc_date, cur_date)
-                acc_date += self.func_relativedelta(candle_unit)(1)
-            last_date = acc_date
+                first_date = datetime.datetime.fromisoformat(records[1].split(',')[0]) # Skip the head record
+                acc_date = first_date
+                for record in records[1:]:
+                    cur_date = datetime.datetime.fromisoformat(record.split(',')[0])
+                    self.assertEqual(acc_date, cur_date)
+                    acc_date += self.func_relativedelta(candle_unit)(1)
+                last_date = acc_date
 
             # Test date consistency
             # All data files should be in same data range
