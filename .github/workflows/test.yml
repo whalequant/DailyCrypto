@@ -1,4 +1,4 @@
-name: TEST
+name: DAILY-CRYPTO-TEST
 
 on:
   push:
