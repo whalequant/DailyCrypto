@@ -1,6 +1,6 @@
 # DailyCrypto
 
-[![DailyCryptoTest](https://github.com/whalequant/DailyCrypto/actions/workflows/ci.yml/badge.svg)](https://github.com/whalequant/DailyCrypto/actions/workflows/ci.yml)
+[![DailyCryptoTest](https://github.com/whalequant/DailyCrypto/actions/workflows/test.yml/badge.svg)](https://github.com/whalequant/DailyCrypto/actions/workflows/test.yml)
 
 ### Example 1: Data Cleanse
 ```console
